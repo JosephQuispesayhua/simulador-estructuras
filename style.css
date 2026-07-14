@@ -1,0 +1,272 @@
+/* =========================================================
+   style.css — Identidad visual compartida del proyecto
+   Simulador de Estructuras de Datos
+   -----------------------------------------------------------
+   Este archivo es COMPARTIDO por las 4 estructuras (pila, cola,
+   lista, arbol) y por index.html. No redefinir colores base,
+   tipografía ni botones dentro de pila.css / cola.css / etc.
+   Si necesitas cambiar algo de aquí, avisa al grupo primero.
+   ========================================================= */
+
+:root {
+  /* ---- Paleta institucional: granate + blanco ---- */
+  --granate: #7a1128;          /* color principal */
+  --granate-dark: #4f0a1a;     /* hover / énfasis fuerte */
+  --granate-mid: #9c1f3d;      /* acentos, bordes activos */
+  --blush: #f6e9ec;            /* tinte muy claro de granate, para fondos suaves */
+  --cream: #fbf7f5;            /* fondo general de la página */
+  --white: #ffffff;
+
+  /* ---- Neutrales derivados (para texto legible) ---- */
+  --ink: #2b1114;              /* texto principal, casi negro con matiz granate */
+  --ink-muted: #6e4a50;        /* texto secundario */
+  --border: #e7d3d7;           /* bordes suaves */
+
+  /* ---- Estados ---- */
+  --ok: #2f6b46;
+  --ok-bg: #e7f3ec;
+  --pending: #9c1f3d;
+  --pending-bg: #f6e9ec;
+
+  /* ---- Tipografía ---- */
+  --font-display: Georgia, "Iowan Old Style", "Palatino Linotype", "Book Antiqua", serif;
+  --font-body: "Segoe UI", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: "Consolas", "Menlo", "Courier New", monospace;
+
+  /* ---- Otros tokens ---- */
+  --radius: 10px;
+  --radius-sm: 6px;
+  --shadow: 0 4px 14px rgba(122, 17, 40, 0.08);
+  --shadow-hover: 0 10px 24px rgba(122, 17, 40, 0.16);
+  --max-width: 1080px;
+}
+
+/* ---------- Reset básico ---------- */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--cream);
+  color: var(--ink);
+  font-family: var(--font-body);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+img, svg {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: var(--granate);
+}
+
+/* Respeta a quienes prefieren menos movimiento */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ---------- Foco visible (accesibilidad, no quitar) ---------- */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible {
+  outline: 3px solid var(--granate-mid);
+  outline-offset: 2px;
+}
+
+/* ---------- Layout general ---------- */
+.contenedor {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* ---------- Encabezado institucional ---------- */
+.encabezado {
+  background: linear-gradient(135deg, var(--granate) 0%, var(--granate-dark) 100%);
+  color: var(--white);
+  padding: 40px 0 34px;
+}
+
+.encabezado__contenido {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.sello {
+  flex-shrink: 0;
+  width: 64px;
+  height: 64px;
+}
+
+.encabezado__textos h1 {
+  font-family: var(--font-display);
+  font-size: clamp(1.6rem, 2.4vw, 2.2rem);
+  margin: 0 0 4px;
+  letter-spacing: 0.3px;
+}
+
+.encabezado__textos p {
+  margin: 0;
+  font-size: 0.95rem;
+  color: #f1d9de;
+}
+
+.migas {
+  margin-top: 18px;
+  font-size: 0.85rem;
+}
+
+.migas a {
+  color: #f1d9de;
+  text-decoration: none;
+}
+
+.migas a:hover {
+  text-decoration: underline;
+}
+
+/* ---------- Tarjetas genéricas ---------- */
+.tarjeta {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 24px;
+}
+
+/* ---------- Botones ---------- */
+.boton {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  border-radius: var(--radius-sm);
+  border: 1px solid transparent;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+  text-decoration: none;
+}
+
+.boton--primario {
+  background: var(--granate);
+  color: var(--white);
+}
+
+.boton--primario:hover {
+  background: var(--granate-dark);
+  box-shadow: var(--shadow-hover);
+  transform: translateY(-1px);
+}
+
+.boton--secundario {
+  background: var(--white);
+  color: var(--granate);
+  border-color: var(--granate);
+}
+
+.boton--secundario:hover {
+  background: var(--blush);
+}
+
+/* ---------- Etiquetas de estado (para el panel de explicación en cada simulador) ---------- */
+.estado {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+}
+
+.estado--pendiente {
+  background: var(--pending-bg);
+  color: var(--pending);
+}
+
+.estado--listo {
+  background: var(--ok-bg);
+  color: var(--ok);
+}
+
+/* ---------- Pie de página ---------- */
+.pie {
+  margin-top: 48px;
+  padding: 28px 0;
+  background: var(--granate-dark);
+  color: #f1d9de;
+  font-size: 0.85rem;
+}
+
+.pie a {
+  color: var(--white);
+}
+
+.pie__contenido {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 24px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* ---------- Utilidades compartidas para los simuladores individuales ---------- */
+/* Cada estructura puede reutilizar estas clases dentro de su propio xxx.html */
+
+.panel-explicacion {
+  background: var(--blush);
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--granate);
+  border-radius: var(--radius-sm);
+  padding: 14px 18px;
+  font-size: 0.95rem;
+  color: var(--ink);
+  min-height: 48px;
+}
+
+.controles {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+  margin: 18px 0;
+}
+
+.controles input[type="text"],
+.controles input[type="number"] {
+  padding: 9px 12px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  min-width: 140px;
+}
+
+.lienzo {
+  background: var(--white);
+  border: 1px dashed var(--granate-mid);
+  border-radius: var(--radius);
+  min-height: 220px;
+  padding: 20px;
+  display: flex;
+  align-items: flex-end;
+  gap: 10px;
+  flex-wrap: wrap;
+}

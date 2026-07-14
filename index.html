@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simulador de Estructuras de Datos — TIF</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ===================== ENCABEZADO ===================== -->
+  <header class="encabezado">
+    <div class="contenedor encabezado__contenido">
+      <!-- Sello institucional simple (no es el escudo oficial, es un placeholder abstracto) -->
+      <svg class="sello" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Sello del proyecto">
+        <circle cx="32" cy="32" r="30" fill="none" stroke="#ffffff" stroke-width="2"/>
+        <circle cx="32" cy="32" r="24" fill="none" stroke="#ffffff" stroke-width="1" opacity="0.6"/>
+        <text x="32" y="38" text-anchor="middle" font-family="Georgia, serif" font-size="18" fill="#ffffff" font-weight="bold">SED</text>
+      </svg>
+      <div class="encabezado__textos">
+        <h1>Simulador de Estructuras de Datos</h1>
+        <p>Trabajo Final del Curso · Estructura de Datos y Algoritmos · 2026-A</p>
+      </div>
+    </div>
+  </header>
+
+  <main class="contenedor" style="padding-top: 32px; padding-bottom: 24px;">
+
+    <!-- ===================== INTRODUCCIÓN ===================== -->
+    <section class="tarjeta">
+      <h2 style="margin-top:0; font-family: var(--font-display); color: var(--granate-dark);">Sobre el proyecto</h2>
+      <p>
+        Este simulador permite visualizar de forma gráfica el funcionamiento de cuatro
+        estructuras de datos fundamentales: <strong>pila</strong>, <strong>cola</strong>,
+        <strong>lista enlazada</strong> y <strong>árbol binario</strong>. Cada módulo muestra
+        las operaciones de inserción y eliminación paso a paso, junto con una explicación
+        en texto de lo que ocurre en cada acción.
+      </p>
+      <p style="color: var(--ink-muted); font-size: 0.9rem; margin-bottom: 0;">
+        <!-- PLACEHOLDER: reemplazar con los datos reales del grupo -->
+        Docente: [Nombre del docente] &nbsp;·&nbsp; Grupo: [Nombre o número de grupo] &nbsp;·&nbsp;
+        Integrantes: [Nombre 1, Nombre 2, Nombre 3, Nombre 4]
+      </p>
+    </section>
+
+    <!-- ===================== GRID DE ESTRUCTURAS ===================== -->
+    <section style="margin-top: 32px;">
+      <h2 style="font-family: var(--font-display); color: var(--granate-dark);">Estructuras disponibles</h2>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 18px; margin-top: 16px;">
+
+        <!-- ---- Pila ---- -->
+        <a href="pila/pila.html" class="tarjeta" style="text-decoration:none; color: inherit; display:block; transition: transform .15s ease, box-shadow .15s ease;"
+           onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='var(--shadow-hover)';"
+           onmouseout="this.style.transform=''; this.style.boxShadow='';">
+          <svg width="100%" height="70" viewBox="0 0 120 70" aria-hidden="true">
+            <rect x="35" y="10" width="50" height="14" fill="var(--granate-mid)"/>
+            <rect x="35" y="28" width="50" height="14" fill="var(--granate)"/>
+            <rect x="35" y="46" width="50" height="14" fill="var(--granate-dark)"/>
+          </svg>
+          <h3 style="margin: 12px 0 4px; color: var(--granate-dark);">Pila (Stack)</h3>
+          <p style="margin: 0 0 10px; font-size: 0.9rem; color: var(--ink-muted);">Push y Pop — estructura LIFO.</p>
+          <span class="estado estado--pendiente">Pendiente</span>
+        </a>
+
+        <!-- ---- Cola ---- -->
+        <a href="cola/cola.html" class="tarjeta" style="text-decoration:none; color: inherit; display:block; transition: transform .15s ease, box-shadow .15s ease;"
+           onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='var(--shadow-hover)';"
+           onmouseout="this.style.transform=''; this.style.boxShadow='';">
+          <svg width="100%" height="70" viewBox="0 0 120 70" aria-hidden="true">
+            <rect x="10" y="28" width="22" height="22" fill="var(--granate-dark)"/>
+            <rect x="38" y="28" width="22" height="22" fill="var(--granate)"/>
+            <rect x="66" y="28" width="22" height="22" fill="var(--granate-mid)"/>
+            <path d="M92 39 L104 39 M99 34 L104 39 L99 44" stroke="var(--granate-dark)" stroke-width="2" fill="none"/>
+          </svg>
+          <h3 style="margin: 12px 0 4px; color: var(--granate-dark);">Cola (Queue)</h3>
+          <p style="margin: 0 0 10px; font-size: 0.9rem; color: var(--ink-muted);">Enqueue y Dequeue — estructura FIFO.</p>
+          <span class="estado estado--pendiente">Pendiente</span>
+        </a>
+
+        <!-- ---- Lista enlazada ---- -->
+        <a href="lista/lista.html" class="tarjeta" style="text-decoration:none; color: inherit; display:block; transition: transform .15s ease, box-shadow .15s ease;"
+           onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='var(--shadow-hover)';"
+           onmouseout="this.style.transform=''; this.style.boxShadow='';">
+          <svg width="100%" height="70" viewBox="0 0 120 70" aria-hidden="true">
+            <circle cx="20" cy="35" r="10" fill="var(--granate)"/>
+            <path d="M30 35 L48 35" stroke="var(--granate-dark)" stroke-width="2" marker-end="url(#f1)"/>
+            <circle cx="58" cy="35" r="10" fill="var(--granate-mid)"/>
+            <path d="M68 35 L86 35" stroke="var(--granate-dark)" stroke-width="2"/>
+            <circle cx="96" cy="35" r="10" fill="var(--granate-dark)"/>
+          </svg>
+          <h3 style="margin: 12px 0 4px; color: var(--granate-dark);">Lista enlazada</h3>
+          <p style="margin: 0 0 10px; font-size: 0.9rem; color: var(--ink-muted);">Insertar y eliminar nodos enlazados.</p>
+          <span class="estado estado--pendiente">Pendiente</span>
+        </a>
+
+        <!-- ---- Árbol binario ---- -->
+        <a href="arbol/arbol.html" class="tarjeta" style="text-decoration:none; color: inherit; display:block; transition: transform .15s ease, box-shadow .15s ease;"
+           onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='var(--shadow-hover)';"
+           onmouseout="this.style.transform=''; this.style.boxShadow='';">
+          <svg width="100%" height="70" viewBox="0 0 120 70" aria-hidden="true">
+            <circle cx="60" cy="14" r="9" fill="var(--granate-dark)"/>
+            <path d="M60 23 L32 45 M60 23 L88 45" stroke="var(--granate-mid)" stroke-width="2"/>
+            <circle cx="32" cy="52" r="9" fill="var(--granate)"/>
+            <circle cx="88" cy="52" r="9" fill="var(--granate)"/>
+          </svg>
+          <h3 style="margin: 12px 0 4px; color: var(--granate-dark);">Árbol binario</h3>
+          <p style="margin: 0 0 10px; font-size: 0.9rem; color: var(--ink-muted);">Insertar y eliminar nodos del árbol.</p>
+          <span class="estado estado--pendiente">Pendiente</span>
+        </a>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===================== PIE DE PÁGINA ===================== -->
+  <footer class="pie">
+    <div class="contenedor pie__contenido">
+      <span><!-- PLACEHOLDER --> Universidad Nacional de San Agustín de Arequipa · Ingeniería de Sistemas</span>
+      <span><a href="https://github.com/PLACEHOLDER/simulador-tif" target="_blank" rel="noopener">Ver repositorio en GitHub</a></span>
+    </div>
+  </footer>
+
+</body>
+</html>
