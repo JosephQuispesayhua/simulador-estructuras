@@ -1,68 +1,196 @@
 /* =========================================================
-   Pila.js — Lógica de la estructura de datos PILA (Stack)
-   -----------------------------------------------------------
-   Este archivo NO debe tener nada de HTML ni manipulación de
-   pantalla. Solo la clase y sus métodos, igual que se haría
-   en C++, pero en JavaScript.
+   Pila.js
+   ---------------------------------------------------------
+   Implementación completa de una PILA (Stack)
+   utilizando una lista enlazada simple.
    ========================================================= */
 
+//Clase Nodo
+class Nodo {
+  constructor(valor) {
+    this.valor = valor;
+    this.siguiente = null;
+  }
+}
+
+//Clase Pila
 class Pila {
+
   constructor() {
-    // Usamos un arreglo como almacenamiento interno.
-    // El final del arreglo (items[items.length - 1]) representa el TOPE de la pila.
-    this.items = [];
+    this.tope = null;
+    this.cantidad = 0;
   }
 
-  /**
-   * Inserta un elemento en el tope de la pila.
-   * Complejidad: O(1)
-   */
+  //Inserta un elemento en el tope - Complejidad: O(1)
   push(valor) {
-    this.items.push(valor);
+    const nuevo = new Nodo(valor);
+
+    nuevo.siguiente = this.tope;
+    this.tope = nuevo;
+
+    this.cantidad++;
   }
 
-  /**
-   * Elimina y retorna el elemento que está en el tope de la pila.
-   * Si la pila está vacía, retorna null en vez de lanzar un error.
-   * Complejidad: O(1)
-   */
+  //Elimina el elemento del tope y lo retorna - Complejidad: O(1)
   pop() {
     if (this.estaVacia()) {
       return null;
     }
-    return this.items.pop();
+
+    const valor = this.tope.valor;
+
+    this.tope = this.tope.siguiente;
+    this.cantidad--;
+
+    return valor;
   }
 
-  /**
-   * Retorna el valor del tope sin eliminarlo.
-   */
+  //Devuelve el elemento del tope sin eliminarlo.
   verTope() {
     if (this.estaVacia()) {
       return null;
     }
-    return this.items[this.items.length - 1];
+
+    return this.tope.valor;
   }
 
-  /**
-   * Indica si la pila no tiene elementos.
-   */
+  // Indica si la pila está vacía.
   estaVacia() {
-    return this.items.length === 0;
+    return this.tope === null;
   }
 
-  /**
-   * Cantidad de elementos actuales en la pila.
-   */
+  //Retorna la cantidad de elementos.
   tamano() {
-    return this.items.length;
+    return this.cantidad;
   }
 
-  /**
-   * Retorna una copia del arreglo interno, ordenado de la BASE al TOPE.
-   * Se usa solo para dibujar la pila en pantalla (pila.render.js),
-   * nunca para modificar el estado real de la estructura.
-   */
-  obtenerElementos() {
-    return [...this.items];
+  //Elimina todos los elementos de la pila.
+  vaciar() {
+    this.tope = null;
+    this.cantidad = 0;
   }
+
+  //Busca un elemento dentro de la pila - Retorna true si existe.
+  buscar(valor) {
+
+    let actual = this.tope;
+
+    while (actual !== null) {
+
+      if (actual.valor === valor) {
+        return true;
+      }
+
+      actual = actual.siguiente;
+    }
+
+    return false;
+  }
+
+  //Retorna la posición del elemento - contando desde el TOPE. - TOPE = posición 0
+  posicion(valor) {
+
+    let actual = this.tope;
+    let posicion = 0;
+
+    while (actual !== null) {
+
+      if (actual.valor === valor) {
+        return posicion;
+      }
+
+      actual = actual.siguiente;
+      posicion++;
+    }
+
+    return -1;
+  }
+
+  //Convierte la pila en un arreglo - Orden: TOPE -> BASE
+  obtenerElementos() {
+
+    const elementos = [];
+
+    let actual = this.tope;
+
+    while (actual !== null) {
+
+      elementos.push(actual.valor);
+
+      actual = actual.siguiente;
+    }
+
+    return elementos;
+  }
+
+  //Devuelve una copia exacta de la pila
+  clonar() {
+
+    const copia = new Pila();
+
+    const valores = this.obtenerElementos().reverse();
+
+    for (const valor of valores) {
+      copia.push(valor);
+    }
+
+    return copia;
+  }
+
+  //Compara dos pilas - Retorna true si tienen los mismos elementos en el mismo orden.
+  equals(otraPila) {
+
+    if (!(otraPila instanceof Pila)) {
+      return false;
+    }
+
+    if (this.tamano() !== otraPila.tamano()) {
+      return false;
+    }
+
+    let actual1 = this.tope;
+    let actual2 = otraPila.tope;
+
+    while (actual1 !== null) {
+
+      if (actual1.valor !== actual2.valor) {
+        return false;
+      }
+
+      actual1 = actual1.siguiente;
+      actual2 = actual2.siguiente;
+    }
+
+    return true;
+  }
+
+  //Invierte completamente la pila
+  invertir() {
+
+    let anterior = null;
+    let actual = this.tope;
+
+    while (actual !== null) {
+
+      const siguiente = actual.siguiente;
+
+      actual.siguiente = anterior;
+
+      anterior = actual;
+      actual = siguiente;
+    }
+
+    this.tope = anterior;
+  }
+
+  //Retorna una representación en texto
+  toString() {
+
+    if (this.estaVacia()) {
+      return "Pila vacía";
+    }
+
+    return this.obtenerElementos().join(" -> ");
+  }
+
 }
