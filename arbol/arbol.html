@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador - Árbol Binario</title>
+
+    <!-- Estilos generales -->
+    <link rel="stylesheet" href="../style.css">
+
+    <!-- Estilos propios -->
+    <link rel="stylesheet" href="arbol.css">
+</head>
+<body>
+
+    <!-- ================= ENCABEZADO ================= -->
+
+    <header class="encabezado">
+        <div class="contenedor encabezado__contenido">
+
+            <svg class="sello" viewBox="0 0 64 64">
+                <circle cx="32" cy="32" r="30"
+                    fill="none"
+                    stroke="#ffffff"
+                    stroke-width="2"/>
+
+                <circle cx="32" cy="32" r="24"
+                    fill="none"
+                    stroke="#ffffff"
+                    stroke-width="1"
+                    opacity=".6"/>
+
+                <text
+                    x="32"
+                    y="38"
+                    text-anchor="middle"
+                    font-size="18"
+                    fill="white"
+                    font-family="Georgia"
+                    font-weight="bold">
+                    BST
+                </text>
+
+            </svg>
+
+            <div class="encabezado__textos">
+                <h1>Árbol Binario de Búsqueda</h1>
+                <p>Simulador de Estructuras de Datos</p>
+            </div>
+
+        </div>
+    </header>
+
+
+    <main class="contenedor">
+
+        <!-- ================= DESCRIPCIÓN ================= -->
+
+        <section class="tarjeta">
+
+            <h2>¿Qué es un Árbol Binario?</h2>
+
+            <p>
+
+                Un árbol binario de búsqueda (BST) organiza los datos
+                de forma jerárquica.
+
+                Cada nodo puede tener como máximo dos hijos:
+
+            </p>
+
+            <ul>
+
+                <li>Hijo izquierdo → valores menores.</li>
+
+                <li>Hijo derecho → valores mayores.</li>
+
+            </ul>
+
+            <p>
+
+                Cada operación mostrará gráficamente cómo cambia el árbol.
+
+            </p>
+
+        </section>
+
+
+        <!-- ================= CONTROLES ================= -->
+
+        <section class="tarjeta">
+
+            <h2>Operaciones</h2>
+
+            <div class="panel-operaciones">
+
+                <input
+                    type="number"
+                    id="valor"
+                    placeholder="Ingrese un número">
+
+                <button id="btnInsertar">
+                    Insertar
+                </button>
+
+                <button id="btnEliminar">
+                    Eliminar
+                </button>
+
+                <button id="btnBuscar">
+                    Buscar
+                </button>
+
+                <button id="btnLimpiar" class="btn-secundario">
+                    Limpiar árbol
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= EXPLICACIÓN ================= -->
+
+        <section class="tarjeta">
+
+            <h2>Paso a paso</h2>
+
+            <div id="explicacion" class="explicacion">
+
+                Bienvenido.
+
+                Seleccione una operación para comenzar.
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= ÁRBOL ================= -->
+
+        <section class="tarjeta">
+
+            <h2>Visualización</h2>
+
+            <div id="contenedorArbol">
+
+                <svg id="svgArbol"></svg>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= RECORRIDOS ================= -->
+
+        <section class="tarjeta">
+
+            <h2>Recorridos</h2>
+
+            <div class="recorridos">
+
+                <p>
+
+                    <strong>Preorden:</strong>
+
+                    <span id="preorden">-</span>
+
+                </p>
+
+                <p>
+
+                    <strong>Inorden:</strong>
+
+                    <span id="inorden">-</span>
+
+                </p>
+
+                <p>
+
+                    <strong>Postorden:</strong>
+
+                    <span id="postorden">-</span>
+
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= BOTÓN VOLVER ================= -->
+
+        <section style="text-align:center;margin-top:25px;">
+
+            <a href="../index.html" class="btn-volver">
+
+                ← Volver al menú principal
+
+            </a>
+
+        </section>
+
+    </main>
+
+
+    <!-- ================= PIE ================= -->
+
+    <footer class="pie">
+
+        <div class="contenedor pie__contenido">
+
+            <span>
+
+                Universidad Nacional de San Agustín de Arequipa
+
+            </span>
+
+            <span>
+
+                Ingeniería de Sistemas · 2026
+
+            </span>
+
+        </div>
+
+    </footer>
+
+
+    <!-- ================= SCRIPTS ================= -->
+
+    <script src="Arbol.js"></script>
+
+    <script src="arbol.render.js"></script>
+
+</body>
+</html>

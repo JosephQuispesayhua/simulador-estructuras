@@ -1,0 +1,290 @@
+/* ==========================================
+   arbol.css
+   Simulador de Árbol Binario de Búsqueda
+========================================== */
+
+/* ---------- Contenedor principal ---------- */
+
+main{
+    padding-top:30px;
+    padding-bottom:40px;
+}
+
+/* ---------- Panel de operaciones ---------- */
+
+.panel-operaciones{
+
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:12px;
+
+    margin-top:15px;
+
+}
+
+/* ---------- Caja de texto ---------- */
+
+.panel-operaciones input{
+
+    width:180px;
+
+    padding:12px;
+
+    border:2px solid #c9c9c9;
+
+    border-radius:8px;
+
+    font-size:16px;
+
+    outline:none;
+
+    transition:.2s;
+
+}
+
+.panel-operaciones input:focus{
+
+    border-color:#7A0026;
+
+    box-shadow:0 0 6px rgba(122,0,38,.25);
+
+}
+
+/* ---------- Botones ---------- */
+
+.panel-operaciones button{
+
+    padding:12px 18px;
+
+    border:none;
+
+    border-radius:8px;
+
+    cursor:pointer;
+
+    font-size:15px;
+
+    font-weight:bold;
+
+    background:#7A0026;
+
+    color:white;
+
+    transition:.25s;
+
+}
+
+.panel-operaciones button:hover{
+
+    background:#5d001d;
+
+    transform:translateY(-2px);
+
+}
+
+.btn-secundario{
+
+    background:#666 !important;
+
+}
+
+.btn-secundario:hover{
+
+    background:#4f4f4f !important;
+
+}
+
+/* ---------- Explicación ---------- */
+
+.explicacion{
+
+    margin-top:15px;
+
+    padding:18px;
+
+    border-left:6px solid #7A0026;
+
+    background:#faf7f8;
+
+    border-radius:8px;
+
+    line-height:1.8;
+
+    font-size:15px;
+
+    min-height:100px;
+
+}
+
+/* ---------- Contenedor del árbol ---------- */
+
+#contenedorArbol{
+
+    width:100%;
+
+    overflow-x:auto;
+
+    overflow-y:hidden;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    padding:20px;
+
+}
+
+/* ---------- SVG ---------- */
+
+#svgArbol{
+
+    width:100%;
+
+    min-width:900px;
+
+    height:600px;
+
+}
+
+/* ---------- Recorridos ---------- */
+
+.recorridos{
+
+    margin-top:10px;
+
+}
+
+.recorridos p{
+
+    margin:10px 0;
+
+    padding:10px;
+
+    background:#f6f6f6;
+
+    border-left:4px solid #7A0026;
+
+    border-radius:6px;
+
+    font-size:15px;
+
+}
+
+/* ---------- Botón volver ---------- */
+
+.btn-volver{
+
+    display:inline-block;
+
+    margin-top:10px;
+
+    padding:12px 24px;
+
+    text-decoration:none;
+
+    color:white;
+
+    background:#7A0026;
+
+    border-radius:8px;
+
+    font-weight:bold;
+
+    transition:.25s;
+
+}
+
+.btn-volver:hover{
+
+    background:#5d001d;
+
+    transform:translateY(-2px);
+
+}
+
+/* ---------- Animación de aparición ---------- */
+
+.tarjeta{
+
+    animation:aparecer .35s ease;
+
+}
+
+@keyframes aparecer{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(15px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+
+/* ---------- Responsivo ---------- */
+
+@media(max-width:768px){
+
+    .panel-operaciones{
+
+        flex-direction:column;
+
+        align-items:center;
+
+    }
+
+    .panel-operaciones input{
+
+        width:100%;
+
+        max-width:320px;
+
+    }
+
+    .panel-operaciones button{
+
+        width:100%;
+
+        max-width:320px;
+
+    }
+
+    #svgArbol{
+
+        min-width:700px;
+
+        height:520px;
+
+    }
+
+}
+
+@media(max-width:480px){
+
+    #svgArbol{
+
+        min-width:600px;
+
+        height:450px;
+
+    }
+
+    .explicacion{
+
+        font-size:14px;
+
+    }
+
+}
