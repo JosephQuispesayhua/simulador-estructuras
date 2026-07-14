@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pila (Stack) — Simulador de Estructuras de Datos</title>
+  <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="pila.css">
+</head>
+<body>
+
+  <!-- ===================== ENCABEZADO ===================== -->
+  <header class="encabezado">
+    <div class="contenedor encabezado__contenido">
+      <svg class="sello" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Sello del proyecto">
+        <circle cx="32" cy="32" r="30" fill="none" stroke="#ffffff" stroke-width="2"/>
+        <circle cx="32" cy="32" r="24" fill="none" stroke="#ffffff" stroke-width="1" opacity="0.6"/>
+        <text x="32" y="38" text-anchor="middle" font-family="Georgia, serif" font-size="18" fill="#ffffff" font-weight="bold">SED</text>
+      </svg>
+      <div class="encabezado__textos">
+        <h1>Pila (Stack)</h1>
+        <p>Simulador de Estructuras de Datos · Trabajo Final del Curso</p>
+      </div>
+    </div>
+    <div class="contenedor migas">
+      <a href="../index.html">&larr; Volver al inicio</a>
+    </div>
+  </header>
+
+  <main class="contenedor" style="padding-top: 32px; padding-bottom: 40px;">
+
+    <!-- ===================== DEFINICIÓN BREVE ===================== -->
+    <section class="tarjeta">
+      <h2 style="margin-top:0; font-family: var(--font-display); color: var(--granate-dark);">¿Qué es una pila?</h2>
+      <p style="margin-bottom: 0;">
+        Una <strong>pila (stack)</strong> es una estructura de datos lineal que sigue el
+        principio <strong>LIFO</strong> (<em>Last In, First Out</em>): el último elemento
+        en entrar es el primero en salir. Solo se puede insertar y eliminar por un
+        mismo extremo, llamado <strong>tope</strong>. Sus dos operaciones principales son
+        <strong>PUSH</strong> (insertar en el tope) y <strong>POP</strong> (eliminar el
+        elemento del tope). Un ejemplo cotidiano es una pila de platos: solo se puede
+        agregar o quitar el plato de arriba.
+      </p>
+    </section>
+
+    <!-- ===================== SIMULADOR ===================== -->
+    <section class="tarjeta" style="margin-top: 24px;">
+      <h2 style="margin-top:0; font-family: var(--font-display); color: var(--granate-dark);">Simulador</h2>
+
+      <!-- Controles: insertar / eliminar -->
+      <div class="controles">
+        <input
+          type="text"
+          id="valor-input"
+          placeholder="Escribe un valor..."
+          maxlength="12"
+          aria-label="Valor a insertar en la pila"
+        >
+        <button id="btn-push" class="boton boton--primario" type="button">
+          Insertar (PUSH)
+        </button>
+        <button id="btn-pop" class="boton boton--secundario" type="button">
+          Eliminar (POP)
+        </button>
+      </div>
+
+      <!-- Lienzo donde se dibuja la pila -->
+      <div class="lienzo lienzo--pila" id="lienzo-pila" aria-label="Representación gráfica de la pila">
+        <div class="torre-pila" id="torre-pila"></div>
+      </div>
+      <p class="contador-pila" id="contador-pila">Tamaño actual: 0 elementos</p>
+
+      <!-- Panel de explicación en texto -->
+      <div class="panel-explicacion" id="explicacion" role="status" aria-live="polite">
+        Cargando pila de ejemplo...
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===================== PIE DE PÁGINA ===================== -->
+  <footer class="pie">
+    <div class="contenedor pie__contenido">
+      <span>Universidad Nacional de San Agustín de Arequipa · Ingeniería de Sistemas</span>
+      <span><a href="../index.html">&larr; Volver al inicio</a></span>
+    </div>
+  </footer>
+
+  <!-- Primero la lógica pura, después la conexión visual -->
+  <script src="Pila.js"></script>
+  <script src="pila.render.js"></script>
+</body>
+</html>

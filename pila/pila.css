@@ -1,0 +1,110 @@
+/* =========================================================
+   pila.css — Estilos propios de la Pila
+   -----------------------------------------------------------
+   Solo estilos que no existen en style.css. No redefinir
+   colores base, tipografía ni botones aquí.
+   ========================================================= */
+
+/* Contenedor de la torre: apila las cajas de abajo hacia arriba */
+.torre-pila {
+  display: flex;
+  flex-direction: column-reverse; /* el último hijo del DOM (el más nuevo) queda arriba */
+  align-items: center;
+  justify-content: flex-start;
+  gap: 8px;
+  width: 100%;
+  min-height: 260px;
+  padding: 16px 0 4px;
+}
+
+.torre-pila__vacio {
+  color: var(--ink-muted);
+  font-style: italic;
+  margin: auto;
+}
+
+/* Cada elemento de la pila */
+.caja-pila {
+  position: relative;
+  width: 160px;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--granate-mid);
+  color: var(--white);
+  font-weight: 600;
+  border-radius: var(--radius-sm);
+  box-shadow: 0 2px 6px rgba(122, 17, 40, 0.25);
+  word-break: break-word;
+  padding: 6px 12px;
+}
+
+/* La caja del tope se resalta: es la única accesible directamente */
+.caja-pila--tope {
+  background: var(--granate-dark);
+  outline: 2px solid var(--granate);
+  outline-offset: 3px;
+}
+
+.caja-pila__etiqueta {
+  position: absolute;
+  right: -8px;
+  top: -10px;
+  background: var(--white);
+  color: var(--granate-dark);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+  padding: 2px 7px;
+  border-radius: 999px;
+  border: 1px solid var(--granate-mid);
+}
+
+/* Animación breve al insertar un elemento nuevo */
+.caja-pila--animando {
+  animation: aparecerCaja 0.3s ease;
+}
+
+@keyframes aparecerCaja {
+  from {
+    transform: translateY(-14px) scale(0.9);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .caja-pila--animando {
+    animation: none;
+  }
+}
+
+/* Contador de tamaño debajo del lienzo */
+.contador-pila {
+  margin-top: 10px;
+  font-size: 0.85rem;
+  color: var(--ink-muted);
+  text-align: center;
+}
+
+/* Base de la pila (línea que representa el "suelo") */
+.lienzo--pila {
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  padding-bottom: 0;
+}
+
+.lienzo--pila::after {
+  content: "";
+  display: block;
+  width: 200px;
+  height: 4px;
+  background: var(--granate);
+  border-radius: 2px;
+  margin-top: 2px;
+}
