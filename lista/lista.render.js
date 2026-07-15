@@ -1,131 +1,140 @@
-// Instanciar la Lista Enlazada global
+// Instancia global
 const miLista = new ListaEnlazada();
 
-// Inicializamos la lista con unos valores de ejemplo para que no se vea vacía al cargar
+// Elementos iniciales de prueba
 miLista.insertarAlFinal(10);
 miLista.insertarAlFinal(20);
 miLista.insertarAlFinal(30);
 
-// Función principal para dibujar los nodos en pantalla
 function renderizarLista() {
-    const visualArea = document.getElementById('visual-area');
-    visualArea.innerHTML = ''; // Limpiar el lienzo visual
+    const contenedor = document.getElementById('contenedor-lista');
+    contenedor.innerHTML = '';
 
-    let actual = miLista.cabeza;
-    
-    if (actual === null) {
-        visualArea.innerHTML = '<span style="color: #9ca3af; font-style: italic;">La lista está vacía</span>';
+    if (miLista.cabeza === null) {
+        contenedor.innerHTML = '<p class="lista__vacio">La lista está vacía actualmente.</p>';
         return;
     }
 
+    let actual = miLista.cabeza;
+    let esPrimero = true;
+
     while (actual !== null) {
-        // Crear el bloque de representación visual del nodo
-        const nodeContainer = document.createElement('div');
-        nodeContainer.className = 'node';
+        // Contenedor del elemento (Badge + Nodo)
+        const item = document.createElement('div');
+        item.className = 'lista__item';
 
-        // Parte del Valor
-        const valDiv = document.createElement('div');
-        valDiv.className = 'node-val';
-        valDiv.textContent = actual.valor;
+        // Etiqueta superior
+        const etiqueta = document.createElement('div');
+        etiqueta.className = 'lista__etiqueta';
+        if (esPrimero) {
+            etiqueta.textContent = 'Cabeza';
+        } else if (actual.siguiente === null) {
+            etiqueta.textContent = 'Fin';
+        }
+        item.appendChild(etiqueta);
 
-        // Parte del Puntero Siguiente
-        const nextDiv = document.createElement('div');
-        nextDiv.className = 'node-next';
-        nextDiv.textContent = actual.siguiente !== null ? '•next' : 'null';
+        // Estructura del Nodo (Valor y Siguiente)
+        const nodoCuerpo = document.createElement('div');
+        nodoCuerpo.className = esPrimero ? 'lista__nodo-cuerpo lista__nodo-cuerpo--cabeza' : 'lista__nodo-cuerpo';
 
-        // Unimos el nodo
-        nodeContainer.appendChild(valDiv);
-        nodeContainer.appendChild(nextDiv);
-        visualArea.appendChild(nodeContainer);
+        const valorDiv = document.createElement('div');
+        valorDiv.className = 'lista__valor';
+        valorDiv.textContent = actual.valor;
 
-        // Si hay un nodo siguiente, agregamos una flecha visual
+        const punteroDiv = document.createElement('div');
+        punteroDiv.className = 'lista__puntero-sig';
+        punteroDiv.textContent = actual.siguiente !== null ? 'next' : 'null';
+
+        nodoCuerpo.appendChild(valorDiv);
+        nodoCuerpo.appendChild(punteroDiv);
+        item.appendChild(nodoCuerpo);
+
+        contenedor.appendChild(item);
+
+        // Flecha conectora (si hay un elemento siguiente)
         if (actual.siguiente !== null) {
-            const arrowDiv = document.createElement('div');
-            arrowDiv.className = 'arrow';
-            arrowDiv.textContent = '→';
-            visualArea.appendChild(arrowDiv);
+            const flecha = document.createElement('div');
+            flecha.className = 'lista__flecha';
+            flecha.innerHTML = '→';
+            contenedor.appendChild(flecha);
         }
 
         actual = actual.siguiente;
+        esPrimero = false;
     }
 }
 
-// Acción: Agregar al Final
-function agregarAlFinal() {
-    const input = document.getElementById('node-value');
+function obtenerValorInput() {
+    const input = document.getElementById('valor-input');
     const valor = parseInt(input.value);
-
     if (isNaN(valor)) {
-        alert("Por favor ingresa un número válido.");
-        return;
+        alert('Por favor, ingresa un valor numérico válido.');
+        return null;
     }
+    return valor;
+}
+
+function generarNuevoAleatorio() {
+    document.getElementById('valor-input').value = Math.floor(Math.random() * 90) + 10;
+}
+
+function insertarAlFinalVisual() {
+    const valor = obtenerValorInput();
+    if (valor === null) return;
 
     miLista.insertarAlFinal(valor);
     renderizarLista();
 
-    // Actualizar la explicación lógica en pantalla
-    document.getElementById('explanation-text').innerHTML = `
-        <p><strong>Operación:</strong> Insertar al Final (${valor})</p>
-        <p>Se ha instanciado un nuevo <span class="highlight">Nodo(${valor})</span>. El programa recorrió toda la lista desde la cabeza hasta el último elemento y asignó su puntero <code>siguiente</code> para apuntar a la dirección en memoria del nuevo nodo.</p>
+    document.getElementById('explicacion').innerHTML = `
+        <p><strong>Inserción al Final (push back) efectuada:</strong> Se creó un nuevo nodo con el valor <code>${valor}</code>.</p>
+        <p>El algoritmo recorrió la lista desde la <em>cabeza</em> hasta encontrar el nodo terminal cuyo puntero era <code>null</code>, y lo redirigió apuntando hacia el nuevo elemento instanciado.</p>
     `;
-    
-    generarNuevoValorAleatorio();
+    generarNuevoAleatorio();
 }
 
-// Acción: Agregar al Inicio (Cabeza)
-function agregarAlInicio() {
-    const input = document.getElementById('node-value');
-    const valor = parseInt(input.value);
-
-    if (isNaN(valor)) {
-        alert("Por favor ingresa un número válido.");
-        return;
-    }
+function insertarAlInicioVisual() {
+    const valor = obtenerValorInput();
+    if (valor === null) return;
 
     miLista.insertarAlInicio(valor);
     renderizarLista();
 
-    document.getElementById('explanation-text').innerHTML = `
-        <p><strong>Operación:</strong> Insertar al Inicio (${valor})</p>
-        <p>Se creó el <span class="highlight">Nodo(${valor})</span>. Su puntero <code>siguiente</code> se asignó inmediatamente para apuntar a lo que era la antigua <code>cabeza</code> de la lista. Finalmente, la referencia global de la cabeza se actualizó hacia este nuevo nodo.</p>
+    document.getElementById('explicacion').innerHTML = `
+        <p><strong>Inserción al Inicio (push front) efectuada:</strong> Se generó el nodo con el valor <code>${valor}</code>.</p>
+        <p>El puntero <code>siguiente</code> del nuevo elemento fue configurado para apuntar a la dirección original de la <em>Cabeza</em>. Posteriormente, se actualizó la variable de la cabeza para apuntar hacia este nuevo nodo.</p>
     `;
-
-    generarNuevoValorAleatorio();
+    generarNuevoAleatorio();
 }
 
-// Acción: Eliminar por Valor
-function eliminarNodo() {
-    const input = document.getElementById('node-value');
-    const valor = parseInt(input.value);
-
-    if (isNaN(valor)) {
-        alert("Por favor ingresa un número válido.");
-        return;
-    }
+function eliminarVisual() {
+    const valor = obtenerValorInput();
+    if (valor === null) return;
 
     const exito = miLista.eliminarPorValor(valor);
-    
+
     if (exito) {
         renderizarLista();
-        document.getElementById('explanation-text').innerHTML = `
-            <p><strong>Operación:</strong> Eliminar Nodo (${valor})</p>
-            <p>Se realizó una búsqueda secuencial. Al localizar el <span class="highlight">Nodo(${valor})</span>, tomamos el puntero del nodo anterior y lo conectamos directamente con el nodo posterior al que íbamos a eliminar. El recolector de basura de JavaScript libera la memoria del nodo desligado automáticamente.</p>
+        document.getElementById('explicacion').innerHTML = `
+            <p><strong>Eliminación de nodo exitosa:</strong> Se buscó y eliminó secuencialmente el nodo con valor <code>${valor}</code>.</p>
+            <p>El nodo anterior al elemento encontrado desvió su puntero <code>siguiente</code> apuntando directamente hacia el nodo que le sucedía al eliminado, saltándolo y liberando la memoria asignada en el recolector de basura.</p>
         `;
     } else {
-        document.getElementById('explanation-text').innerHTML = `
-            <p style="color: #ef4444;"><strong>Error:</strong> No se pudo eliminar el valor ${valor}.</p>
-            <p>Se recorrió secuencialmente toda la lista comparando elemento por elemento y no se encontró ningún nodo que contuviera ese valor específico.</p>
+        document.getElementById('explicacion').innerHTML = `
+            <p style="color: var(--granate-mid);"><strong>No se encontró el valor:</strong> Se ha recorrido secuencialmente la lista y no existe un elemento con el valor <code>${valor}</code> para eliminar.</p>
         `;
     }
 }
 
-// Genera un número aleatorio útil para evitar reescribir manualmente cada número
-function generarNuevoValorAleatorio() {
-    document.getElementById('node-value').value = Math.floor(Math.random() * 90) + 10;
+function vaciarVisual() {
+    miLista.vaciar();
+    renderizarLista();
+    document.getElementById('explicacion').innerHTML = `
+        <p><strong>Lista vaciada:</strong> Se eliminaron todas las referencias asignadas a la cabeza, restaurando la estructura inicial de la lista.</p>
+    `;
 }
 
-// Renderizado inicial al cargar la página
+// Renderizado de inicio
 window.onload = function() {
     renderizarLista();
-    generarNuevoValorAleatorio();
+    generarNuevoAleatorio();
 };
