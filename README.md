@@ -6,10 +6,10 @@ Universidad Nacional de San Agustín de Arequipa · Escuela Profesional de Ingen
 <!-- PLACEHOLDER: completar con los datos reales del grupo -->
 **Docente:** RONI GUILLERMO APAZA ACEITUNO
 **Integrantes:**
-- QUISPE RUPAYLLA FABRIZIO ALONSO — Pila
-- QUISPESAYHUA HANCCO JOSEPH BRAYAN — Cola
-- SARMIENTO TICO LIMBERG — Lista enlazada
-- HUAYTA CHOQUEPATA ABEL ALEXANDER — Árbol binario
+- QUISPE RUPAYLLA FABRIZIO ALONSO
+- QUISPESAYHUA HANCCO JOSEPH BRAYAN
+- SARMIENTO TICO LIMBERG
+- HUAYTA CHOQUEPATA ABEL ALEXANDER
 
 ---
 
