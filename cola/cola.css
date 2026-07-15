@@ -1,0 +1,79 @@
+/* cola.css
+   Estilos SOLO del módulo Cola. No redefine colores base, tipografía
+   ni botones — eso vive en ../style.css compartido. */
+ 
+.cola__lienzo {
+  align-items: center;
+  overflow-x: auto;
+  gap: 4px;
+}
+ 
+/* Cada caja va envuelta en esta columna para poder poner su etiqueta arriba. */
+.cola__item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+}
+ 
+/* Etiqueta pequeña tipo "badge" encima de la caja (Frente / Final). */
+.cola__etiqueta {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  color: var(--granate-mid);
+  min-height: 14px;
+}
+ 
+.cola__caja {
+  min-width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--blush);
+  border: 2px solid var(--granate-mid);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow);
+  font-family: var(--font-mono);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--granate-dark);
+  flex-shrink: 0;
+  animation: cola-aparecer 0.2s ease-out;
+}
+ 
+/* El elemento del frente (el próximo en salir) se resalta más fuerte. */
+.cola__caja--frente {
+  background: var(--granate);
+  color: var(--white);
+  border-color: var(--granate-dark);
+  box-shadow: var(--shadow-hover);
+}
+ 
+@keyframes cola-aparecer {
+  from {
+    opacity: 0;
+    transform: scale(0.85);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+ 
+.cola__flecha {
+  font-size: 1.4rem;
+  color: var(--granate-mid);
+  flex-shrink: 0;
+  align-self: center;
+  margin-top: 20px;
+}
+ 
+.cola__vacio {
+  color: var(--ink-muted);
+  font-style: italic;
+  margin: 0;
+}
