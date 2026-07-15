@@ -12,23 +12,18 @@
   <!-- ===================== ENCABEZADO ===================== -->
   <header class="encabezado">
     <div class="contenedor encabezado__contenido">
-      <svg class="sello" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Sello del proyecto">
-        <circle cx="32" cy="32" r="30" fill="none" stroke="#ffffff" stroke-width="2"/>
-        <circle cx="32" cy="32" r="24" fill="none" stroke="#ffffff" stroke-width="1" opacity="0.6"/>
-        <text x="32" y="38" text-anchor="middle" font-family="Georgia, serif" font-size="18" fill="#ffffff" font-weight="bold">SED</text>
-      </svg>
+      <img class="sello" src="../Escudo_UNSA.png.webp" alt="Escudo de la UNSA">
       <div class="encabezado__textos">
         <h1>Pila (Stack)</h1>
-        <p>Simulador de Estructuras de Datos · Trabajo Final del Curso</p>
+        <p>Estructura LIFO: el ultimo en entrar es el primero en salir</p>
       </div>
-    </div>
-    <div class="contenedor migas">
-      <a href="../index.html">&larr; Volver al inicio</a>
     </div>
   </header>
 
   <main class="contenedor" style="padding-top: 32px; padding-bottom: 40px;">
-
+    <div class="contenedor migas">
+      <a href="../index.html">&larr; Volver al inicio</a>
+    </div>
     <!-- ===================== DEFINICIÓN BREVE ===================== -->
     <section class="tarjeta">
       <h2 style="margin-top:0; font-family: var(--font-display); color: var(--granate-dark);">¿Qué es una pila?</h2>
@@ -36,18 +31,19 @@
         Una <strong>pila (stack)</strong> es una estructura de datos lineal que sigue el
         principio <strong>LIFO</strong> (<em>Last In, First Out</em>): el último elemento
         en entrar es el primero en salir. Solo se puede insertar y eliminar por un
-        mismo extremo, llamado <strong>tope</strong>. Sus dos operaciones principales son
-        <strong>PUSH</strong> (insertar en el tope) y <strong>POP</strong> (eliminar el
-        elemento del tope). Un ejemplo cotidiano es una pila de platos: solo se puede
-        agregar o quitar el plato de arriba.
+        mismo extremo, llamado <strong>tope</strong>. Esta implementación usa una
+        <strong>lista enlazada</strong> (nodos con referencia al siguiente), en vez de
+        un arreglo, por lo que insertar y eliminar en el tope son operaciones O(1)
+        sin necesidad de mover elementos. Un ejemplo cotidiano es una pila de platos:
+        solo se puede agregar o quitar el plato de arriba.
       </p>
     </section>
 
-    <!-- ===================== SIMULADOR ===================== -->
+    <!-- ===================== SIMULADOR PRINCIPAL ===================== -->
     <section class="tarjeta" style="margin-top: 24px;">
       <h2 style="margin-top:0; font-family: var(--font-display); color: var(--granate-dark);">Simulador</h2>
 
-      <!-- Controles: insertar / eliminar -->
+      <!-- Insertar / eliminar -->
       <div class="controles">
         <input
           type="text"
@@ -62,6 +58,22 @@
         <button id="btn-pop" class="boton boton--secundario" type="button">
           Eliminar (POP)
         </button>
+        <button id="btn-ver-tope" class="boton boton--secundario" type="button">Ver tope</button>
+        <button id="btn-tamano" class="boton boton--secundario" type="button">Ver tamaño</button>
+        <button id="btn-invertir" class="boton boton--secundario" type="button">Invertir pila</button>
+        <button id="btn-vaciar" class="boton boton--secundario" type="button">Vaciar pila</button>
+      </div>
+
+      <!-- Buscar elemento -->
+      <div class="controles">
+        <input
+          type="text"
+          id="buscar-input"
+          placeholder="Valor a buscar..."
+          maxlength="12"
+          aria-label="Valor a buscar en la pila"
+        >
+        <button id="btn-buscar" class="boton boton--secundario" type="button">Buscar</button>
       </div>
 
       <!-- Lienzo donde se dibuja la pila -->
@@ -70,9 +82,53 @@
       </div>
       <p class="contador-pila" id="contador-pila">Tamaño actual: 0 elementos</p>
 
+      <!-- Botón para mostrar/ocultar la sección de comparación -->
+      <div class="controles" style="margin-top: 20px;">
+        <button id="btn-toggle-comparar" class="boton boton--secundario" type="button">
+          Comparar con otra pila
+        </button>
+      </div>
+
       <!-- Panel de explicación en texto -->
       <div class="panel-explicacion" id="explicacion" role="status" aria-live="polite">
         Cargando pila de ejemplo...
+      </div>
+    </section>
+
+    <!-- ===================== COMPARAR CON OTRA PILA (oculta hasta que se presione el botón) ===================== -->
+    <section class="tarjeta seccion-comparacion" id="seccion-comparar" style="display: none;">
+      <h2 style="margin-top:0; font-family: var(--font-display); color: var(--granate-dark);">Comparar con otra pila</h2>
+
+      <div class="controles">
+        <input
+          type="text"
+          id="valor-input-secundaria"
+          placeholder="Escribe un valor..."
+          maxlength="12"
+          aria-label="Valor a insertar en la pila secundaria"
+        >
+        <button id="btn-push-secundaria" class="boton boton--primario" type="button">
+          Insertar (PUSH)
+        </button>
+        <button id="btn-pop-secundaria" class="boton boton--secundario" type="button">
+          Eliminar (POP)
+        </button>
+        <button id="btn-vaciar-secundaria" class="boton boton--secundario" type="button">
+          Vaciar pila
+        </button>
+      </div>
+
+      <div class="lienzo lienzo--pila" aria-label="Representación gráfica de la pila secundaria">
+        <div class="torre-pila" id="torre-pila-secundaria"></div>
+      </div>
+      <p class="contador-pila" id="contador-pila-secundaria">Tamaño actual: 0 elementos</p>
+
+      <button id="btn-comparar" class="boton boton--primario boton--comparar" type="button">
+        Comparar pilas
+      </button>
+
+      <div class="panel-explicacion" id="explicacion-comparacion" role="status" aria-live="polite" style="margin-top: 16px;">
+        Cargando pila secundaria de ejemplo...
       </div>
     </section>
 

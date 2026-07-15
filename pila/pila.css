@@ -5,12 +5,19 @@
    colores base, tipografía ni botones aquí.
    ========================================================= */
 
-/* Contenedor de la torre: apila las cajas de abajo hacia arriba */
+/* ---------------------------------------------------------
+   Contenedor de la torre.
+   OJO: dibujarPila() en pila.render.js dibuja el TOPE como
+   PRIMER hijo del contenedor. Por eso aquí usamos
+   flex-direction: column (normal, NO reverse) + justify-content
+   flex-end: así el primer hijo (tope) queda arriba, y toda la
+   torre se ancla al piso de abajo, como una pila real.
+   --------------------------------------------------------- */
 .torre-pila {
   display: flex;
-  flex-direction: column-reverse; /* el último hijo del DOM (el más nuevo) queda arriba */
+  flex-direction: column;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: flex-end; /* ancla el conjunto de cajas abajo */
   gap: 8px;
   width: 100%;
   min-height: 260px;
@@ -61,7 +68,7 @@
   border: 1px solid var(--granate-mid);
 }
 
-/* Animación breve al insertar un elemento nuevo */
+/* Animación breve al insertar un elemento nuevo (siempre el tope) */
 .caja-pila--animando {
   animation: aparecerCaja 0.3s ease;
 }
@@ -107,4 +114,15 @@
   background: var(--granate);
   border-radius: 2px;
   margin-top: 2px;
+}
+
+/* ---------------------------------------------------------
+   Sección de comparación entre dos pilas
+   --------------------------------------------------------- */
+.seccion-comparacion {
+  margin-top: 28px;
+}
+
+.boton--comparar {
+  margin-top: 6px;
 }

@@ -148,6 +148,15 @@ input:focus-visible {
   padding: 24px;
 }
 
+.imagen-tarjeta{
+    display: block;
+    width: 100%;
+    height: 180px;      /* Ajusta este valor */
+    object-fit: contain; /* Muestra toda la imagen */
+    object-position: center;
+    margin: 0 auto 15px;
+}
+
 /* ---------- Botones ---------- */
 .boton {
   display: inline-flex;
