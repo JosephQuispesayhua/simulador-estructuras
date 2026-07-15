@@ -2,7 +2,6 @@
   Pila.js
   ---------------------------------------------------------
   Implementación completa de una PILA (Stack)
-  utilizando una lista enlazada simple.
   ========================================================= */
 
 //Clase Nodo
