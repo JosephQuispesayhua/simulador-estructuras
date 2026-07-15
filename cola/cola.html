@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cola (Queue) — Simulador de Estructuras de Datos</title>
+  <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="cola.css">
+</head>
+<body>
+ 
+  <header class="encabezado">
+    <div class="contenedor encabezado__contenido">
+      <img class="sello" src="../Escudo_UNSA.png.webp" alt="Escudo de la UNSA">
+      <div class="encabezado__textos">
+        <h1>Cola (Queue)</h1>
+        <p>Estructura FIFO: el primero en entrar es el primero en salir</p>
+      </div>
+    </div>
+  </header>
+ 
+  <main class="contenedor" style="padding-top: 32px; padding-bottom: 24px;">
+ 
+    <p class="migas"><a href="../index.html">&larr; Volver al inicio</a></p>
+ 
+    <section class="tarjeta">
+      <h2 style="margin-top:0; font-family: var(--font-display); color: var(--granate-dark);">¿Qué es una cola?</h2>
+      <p>
+        Una <strong>cola (queue)</strong> es una estructura de datos lineal
+        que sigue el principio <strong>FIFO (First In, First Out)</strong>:
+        el primer elemento en entrar es el primero en salir. Los elementos se
+        insertan por un extremo, llamado <strong>final</strong>, y se
+        eliminan por el otro extremo, llamado <strong>frente</strong>. Sus
+        dos operaciones principales son <strong>ENQUEUE</strong> (insertar en
+        el final) y <strong>DEQUEUE</strong> (eliminar el elemento del
+        frente). Un ejemplo cotidiano es una fila de personas esperando su
+        turno: la primera persona que llega es la primera en ser atendida.
+      </p>
+    </section>
+ 
+    <section class="tarjeta" style="margin-top: 24px;">
+      <h2 style="margin-top:0; font-family: var(--font-display); color: var(--granate-dark);">Simulador</h2>
+ 
+      <h3 style="color: var(--granate-dark);">Cola A</h3>
+      <div class="controles">
+        <input type="text" id="valor-input-a" placeholder="Valor a ingresar en A">
+        <button class="boton boton--primario" onclick="insertarVisualA()">Insertar (enqueue)</button>
+        <button class="boton boton--secundario" onclick="eliminarVisualA()">Eliminar (dequeue)</button>
+        <button class="boton boton--secundario" onclick="verFrenteVisual()">Ver frente</button>
+        <button class="boton boton--secundario" onclick="tamanoVisual()">Tamaño</button>
+        <button class="boton boton--secundario" onclick="buscarVisual()">Buscar valor</button>
+        <button class="boton boton--secundario" onclick="invertirVisual()">Invertir</button>
+        <button class="boton boton--secundario" onclick="vaciarVisual()">Vaciar</button>
+      </div>
+      <div id="contenedor-cola-a" class="lienzo cola__lienzo"></div>
+ 
+      <div class="controles" style="margin-top: 20px;">
+        <button class="boton boton--secundario" id="boton-toggle-comparar" onclick="toggleComparar()">Comparar con otra cola</button>
+      </div>
+ 
+      <div id="seccion-comparar" style="display: none;">
+        <h3 style="color: var(--granate-dark); margin-top: 16px;">Cola B</h3>
+        <div class="controles">
+          <input type="text" id="valor-input-b" placeholder="Valor a ingresar en B">
+          <button class="boton boton--primario" onclick="insertarVisualB()">Insertar (enqueue)</button>
+          <button class="boton boton--secundario" onclick="eliminarVisualB()">Eliminar (dequeue)</button>
+        </div>
+        <div id="contenedor-cola-b" class="lienzo cola__lienzo"></div>
+ 
+        <div class="controles" style="margin-top: 12px;">
+          <button class="boton boton--primario" onclick="compararVisual()">Comparar Cola A con Cola B</button>
+        </div>
+      </div>
+ 
+      <h3 style="margin-bottom: 8px; color: var(--granate-dark); margin-top: 24px;">Explicación</h3>
+      <div id="explicacion" class="panel-explicacion"></div>
+    </section>
+ 
+  </main>
+ 
+  <footer class="pie">
+    <div class="contenedor pie__contenido">
+      <span>Universidad Nacional de San Agustín de Arequipa · Ingeniería de Sistemas</span>
+      <span><a href="https://github.com/JosephQuispesayhua/simulador-estructuras" target="_blank" rel="noopener">Ver repositorio en GitHub</a></span>
+    </div>
+  </footer>
+ 
+  <script src="Cola.js"></script>
+  <script src="cola.render.js"></script>
+</body>
+</html>
