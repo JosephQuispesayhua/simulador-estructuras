@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador - Lista Enlazada Simple</title>
+    <link rel="stylesheet" href="lista.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Estructura de Datos: Lista Enlazada</h1>
+            <p>Simulador interactivo para insertar y eliminar nodos en tiempo real.</p>
+        </header>
+
+        <div class="workspace">
+            <!-- Sección de Simulación y Controles -->
+            <div class="card panel-visual">
+                <div class="controls">
+                    <input type="number" id="node-value" placeholder="Valor" value="10">
+                    <button class="btn btn-primary" onclick="agregarAlFinal()">Insertar al Final</button>
+                    <button class="btn btn-secondary" onclick="agregarAlInicio()">Insertar al Inicio</button>
+                    <button class="btn btn-danger" onclick="eliminarNodo()">Eliminar por Valor</button>
+                </div>
+                
+                <div class="canvas-container">
+                    <div id="visual-area" class="visual-container">
+                        <!-- Los nodos se generarán dinámicamente aquí -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Panel de Explicación y Consola -->
+            <div class="card panel-explicacion">
+                <h3 class="explanation-title">¿Qué está pasando?</h3>
+                <div id="explanation-text" class="explanation-text">
+                    La lista enlazada está vacía o cargando. Ingresa un valor en la caja de texto y haz clic en cualquiera de los botones de acción para ver el comportamiento lógico paso a paso.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts en orden de dependencia -->
+    <script src="lista.js"></script>
+    <script src="lista.render.js"></script>
+</body>
+</html>
